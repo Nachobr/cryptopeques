@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BrowserProvider, Contract, parseEther } from 'ethers';
-import Escrow from './artifacts/Escrow.json';
+import Escrow from './abis/Escrow.json';
 
 const escrowAddress = '0xF032a51e70FD612c5e8be087D0962735cfAaD717';
 
