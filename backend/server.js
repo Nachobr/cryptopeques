@@ -19,20 +19,22 @@ const Token = mongoose.model('Token', tokenSchema);
 // Ruta para obtener datos del mercado
 app.get('/api/market-data', async (req, res) => {
     try {
-        const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
+        const response = await axios.get('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', {
+            headers: {
+                'X-CMC_PRO_API_KEY': 'bf0ef560-01b9-4b16-8445-f17a0d0c2e07'  // Replace with your CoinMarketCap API key
+            },
             params: {
-                vs_currency: 'usd',
-                order: 'market_cap_desc',
-                per_page: 10,
-                page: 1,
-                sparkline: false
+                start: 1,
+                limit: 10,
+                convert: 'USD'
             }
         });
 
-        const tokens = response.data.map(coin => ({
+        // Parse the response data to extract token details
+        const tokens = response.data.data.map(coin => ({
             name: coin.name,
             symbol: coin.symbol,
-            price: coin.current_price
+            price: coin.quote.USD.price
         }));
 
         // Guarda los datos en la base de datos

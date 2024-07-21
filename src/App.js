@@ -73,7 +73,7 @@ function App() {
 
     return (
         <div>
-            <h1>Escrow DApp</h1>
+            <h1>Crypto peques</h1>
             {account ? (
                 <div>
                     <p>Connected as: {account}</p>
